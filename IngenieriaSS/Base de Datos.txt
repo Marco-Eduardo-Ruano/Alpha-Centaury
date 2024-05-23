@@ -1,0 +1,118 @@
+CREATE DATABASE tienda;
+
+USE tienda;
+
+CREATE TABLE Empleados(
+	nss bigint NOT NULL,
+	nombre varchar(30) NOT NULL,
+	edad int,
+	rfc varchar(13) NOT NULL,
+	estado varchar(11) NOT NULL,
+	contraseña varchar(30) NOT NULL,
+
+	PRIMARY KEY (nss)
+);
+
+CREATE TABLE Juegos(
+	idJuego int NOT NULL AUTO_INCREMENT,
+	idProveedor int NOT NULL,
+	nombre varchar(40) NOT NULL,
+	precioCompra float NOT NULL,
+	precioVenta float NOT NULL,
+	clasificacion char,
+	tipo varchar(30),
+	estado varchar(10),
+	cantidad int NOT NULL,
+
+	PRIMARY KEY(idJuego)
+);
+
+CREATE TABLE Proveedores(
+	idProveedor int NOT NULL AUTO_INCREMENT,
+	nombre varchar(30) NOT NULL,
+	pais varchar(25),
+	telefono bigint,
+	correo varchar(50),
+
+	PRIMARY KEY(idProveedor)
+);
+
+CREATE TABLE Franquicias(
+	idFranquicia int NOT NULL AUTO_INCREMENT,
+	nombre varchar(30) NOT NULL,
+	telefono bigint,
+	correo varchar(50),
+	direccion varchar(50),
+
+	PRIMARY KEY(idFranquicia)
+);
+
+CREATE TABLE Compras(
+	folioCompra int NOT NULL AUTO_INCREMENT,
+	fecha varchar(10) NOT NULL,
+	nss bigint NOT NULL,
+	estado varchar(10),
+	
+	PRIMARY KEY(folioCompra),
+	FOREIGN KEY(nss) REFERENCES Empleados(nss)
+);
+
+CREATE TABLE JuegosCompra(
+	idJuegosCompra int NOT NULL AUTO_INCREMENT,
+	idJuego int NOT NULL,
+	idProveedor int NOT NULL,
+	folioCompra int NOT NULL,
+	cantidad int NOT NULL,
+	precioCompra float,
+
+	PRIMARY KEY(idJuegosCompra),
+	FOREIGN KEY(idJuego) REFERENCES Juegos(idJuego),
+	FOREIGN KEY(idProveedor) REFERENCES Proveedores(idProveedor),
+	FOREIGN KEY(folioCompra) REFERENCES Compras(folioCompra)
+);
+
+CREATE TABLE Pedidos(
+	folioPedido int NOT NULL AUTO_INCREMENT,
+	idFranquicia int NOT NULL,
+	nss bigint NOT NULL,
+	fecha varchar(10) NOT NULL,
+	fechaFinal varchar(10),
+	estado varchar(10) NOT NULL,
+
+	PRIMARY KEY(folioPedido),
+	FOREIGN KEY(idFranquicia) REFERENCES Franquicias(idFranquicia),
+	FOREIGN KEY(nss) REFERENCES Empleados(nss)
+);
+
+CREATE TABLE JuegosPedido(
+	idJuegoPedido int NOT NULL AUTO_INCREMENT,
+	folioPedido int NOT NULL,
+	idJuego int NOT NULL,
+	cantidad int NOT NULL,
+	precioVenta float NOT NULL,
+
+	PRIMARY KEY(idJuegoPedido),
+	FOREIGN KEY(folioPedido) REFERENCES Pedidos(folioPedido),
+	FOREIGN KEY(idJuego) REFERENCES Juegos(idJuego)
+);
+
+CREATE TABLE Ventas(
+	folioVenta int NOT NULL AUTO_INCREMENT,
+	nss bigint NOT NULL,
+	fecha varchar(10) NOT NULL,
+
+	PRIMARY KEY(folioVenta),
+	FOREIGN KEY(nss) REFERENCES Empleados(nss)
+);
+
+CREATE TABLE JuegosVenta(
+	idJuegosVenta int NOT NULL AUTO_INCREMENT,
+	folioVenta int NOT NULL,
+	idJuego int NOT NULL,
+	cantidad int NOT NULL,
+	precioVenta float,
+
+	PRIMARY KEY(idJuegosVenta),
+	FOREIGN KEY(folioVenta) REFERENCES Ventas(folioVenta),
+	FOREIGN KEY(idJuego) REFERENCES Juegos(idJuego)
+);

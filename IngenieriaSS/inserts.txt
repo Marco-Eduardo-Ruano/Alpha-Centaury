@@ -1,0 +1,82 @@
+USE tienda;
+
+INSERT INTO Empleados (nss, nombre, edad, rfc, estado, contraseña)
+VALUES
+('16112023910', 'Miguel Guzman', '24' , 'GUPM990224HJ3', 'Activo', 'enchilada_De_yakult13'),
+('27191204922', 'Jorge Sanchez', '30', 'SALJ930814LZ2', 'Activo', 'superman123'),
+('11045198831', 'Ramon Perez', '27', 'PETR951208RE4', 'Activo', 'M4rt1N3z'),
+('38170499131', 'Juan Ramirez', '25', 'RAPJ980523KF6', 'Incapacidad', '0-rd3r-66'),
+('66131894500', 'Paulo Martinez', '32', 'MAAP911010WO3', 'Inactivo', 'Jkl-44-rt');
+
+INSERT INTO Juegos (idJuego, idProveedor, nombre, precioCompra, precioVenta, clasificacion, tipo, estado, cantidad)
+VALUES
+('1', '3', 'Call of Duty: Black Ops II', '200.00', '270.00', 'M', 'Accion/FPS/Multijugador', 'Agotado', '0'),
+('2', '3', 'Call of Duty: Modern Warfare III', '1100.00', '1399.00', 'M', 'Accion/FPS/Multijugador', 'Disponible', '200'),
+('3', '5', 'Jedi: Fallen Order', '670.00', '899.00', 'T', 'Accion/Aventura', 'Disponible', '80'),
+('4', '1', 'Halo: Infinite', '1150.00', '1399.00', 'T', 'Accion/FPS/Aventura', 'Disponible', '120'),
+('5', '4', 'Minecraft', '250.00', '399.00','E', 'Accion/Aventura', 'Disponible', '30'),
+('6', '2', 'Overwatch 2', '149.99', '199.99', 'E', 'Accion/FPS', 'Disponible', '189');
+
+INSERT INTO Proveedores(idProveedor, nombre, pais, telefono, correo)
+VALUES
+('1', '343 Industries', 'Estados Unidos', '5197385407', 'business@343industries.com'),
+('2', 'Blizzard Entertainment', 'Estados Unidos', '5083924761', 'business@blizzard.com'), 
+('3', 'Activision', 'Estados Unidos', '5300981483', 'contact@activision.com'),
+('4', 'Mojang Studios', 'Suecia', '4631547702', 'sales@mojang.com'),
+('5', 'Electronic Arts', 'Estados Unidos', '5515933862', 'business@EA.com');
+
+INSERT INTO Franquicias(idFranquicia, nombre, telefono, correo, direccion)
+VALUES
+('1', 'GameStop', '5913840924', 'busines@gamestop.com', 'Evergreen Avenue 14'),
+('2', 'Game Planet', '5139528500', 'compras@gameplanet.com', 'Rafael Sanzio 150'),
+('3', 'Gamers', '5029448317', 'compras@gamers.com', 'Lopez Mateos Norte 644'),
+('4', 'Steam', '5220100944', 'business@steam.com', 'E Fowler Avenue 2200'),
+('5', 'BattleNet', '5130078892', 'business@battlenet.com', 'Orange Blossom street 8001');
+
+INSERT INTO Compras(folioCompra, fecha, nss, estado)
+VALUES
+('1', '2023/01/18', '11045198831', 'completado'),
+('2', '2023/01/29', '66131894500', 'completado'),
+('3', '2023/02/15', '16112023910', 'completado'),
+('4', '2023/03/23', '27191204922', 'completado'),
+('5', '2023/04/01', '38170499131', 'en proceso');
+
+INSERT INTO JuegosCompra(idJuegosCompra, idJuego, idProveedor, folioCompra, cantidad, precioCompra)
+VALUES
+('1', '2', '3', '1', '500','1100.00'),
+('2', '6', '1', '2', '30','180.00'),
+('3', '4', '4', '3', '700','1499.99'),
+('4', '5', '5', '4', '70','279.99'),
+('5', '3', '3', '5', '500','649.99');
+
+INSERT INTO Pedidos(folioPedido, idFranquicia, nss, fecha, fechaFinal, estado)
+VALUES
+('1', '2', '16112023910', '04/02/2023', '18/02/2023', 'finalizado'),
+('2', '4', '27191204922', '13/02/2023', '03/03/2023', 'finalizado'),
+('3', '1', '11045198831', '26/02/2023', '07/03/2023', 'finalizado'),
+('4', '5', '38170499131', '02/03/2023', '20/03/2023', 'finalizado'),
+('5', '3', '66131894500', '08/03/2023', '24/03/2023', 'finalizado');
+
+INSERT INTO JuegosPedido(idJuegoPedido, idJuego, folioPedido, cantidad,precioVenta)
+VALUES
+('1','5', '1', '100', '429.99'),
+('2','2', '2', '300', '1449.99'),
+('3','1', '3', '50', '1419.99'),
+('4','4', '4', '320', '999.99'),
+('5','3', '5', '280', '929.99');
+
+INSERT INTO Ventas(folioVenta, nss, fecha)
+VALUES
+('1', '16112023910', '18/02/2023'),
+('2', '27191204922', '03/03/2023'),
+('3', '38170499131', '20/03/2023'),
+('4', '11045198831', '21/03/2023'),
+('5', '66131894500', '01/04/2023');
+
+INSERT INTO JuegosVenta(idJuegosVenta, folioVenta, idJuego, cantidad, precioVenta)
+VALUES
+('1', '1', '5', '100', '429.99'),
+('2', '2', '2', '300', '1449.99'),
+('3', '3', '4', '320', '1419.99'),
+('4', '4', '3', '2','999.99'), 
+('5', '5', '2', '1', '1400.00');

@@ -1,0 +1,222 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rebeccapurple;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.Titulo {
+    text-align: center;
+    background-color: #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 2vw;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.descripcion {
+    text-align: center;
+    background: #ccc;
+    padding: 2vw;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.columna-central {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    height: 100%;
+}
+
+.contenedor-sombreado {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2vw;
+    border-radius: 8px;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+/* Media query para tabletas y móviles */
+@media (max-width: 768px) {
+
+    .Titulo,
+    .descripcion,
+    .contenedor-sombreado {
+        max-width: 100%;
+        padding: 5vw;
+    }
+
+    /* Estilos para tabla receptiva */
+    .tabla-bonita {
+        overflow-x: auto;
+    }
+
+    .tabla-bonita {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .tabla-bonita thead,
+    .tabla-bonita tbody,
+    .tabla-bonita th,
+    .tabla-bonita td,
+    .tabla-bonita tr {
+        display: block;
+    }
+
+    .tabla-bonita tbody td {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 5px;
+    }
+}
+
+/* Tabla */
+.tabla-bonita {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tabla-bonita thead tr {
+    background-color: #ccc;
+}
+
+.tabla-bonita thead th {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.tabla-bonita tbody td {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Estilo para filas pares */
+.tabla-bonita tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Color de fondo para filas pares */
+}
+
+/* Estilo para filas impares */
+.tabla-bonita tbody tr:nth-child(odd) {
+    background-color: #fff;
+    /* Color de fondo para filas impares */
+}
+/* Resaltar celda al pasar el cursor sobre ella */
+.tabla-bonita tbody td:hover {
+    background-color: #ffcc00;
+    /* Cambia el color al pasar el cursor */
+}
+
+/* Resaltar celda cuando está seleccionada o enfocada */
+.tabla-bonita tbody td:focus {
+    background-color: #ffcc00;
+    /* Cambia el color cuando está seleccionada */
+}
+
+
+:root {
+
+    --input-color: #0052f7a8;
+    --input-border: #CDD9ED;
+    --input-background: #fff;
+    --input-placeholder: #CBD1DC;
+
+    --input-border-focus: #275EFE;
+
+    --group-color: var(--input-color);
+    --group-border: var(--input-border);
+    --group-background: #EEF4FF;
+
+    --group-color-focus: #fff;
+    --group-border-focus: var(--input-border-focus);
+    --group-background-focus: #678EFE;
+
+}
+
+.form-field {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 6px;
+    color: var(--input-color);
+    border: 1px solid var(--input-border);
+    background: var(--input-background);
+    transition: border .3s ease;
+
+    &::placeholder {
+        color: var(--input-placeholder);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var(--input-border-focus);
+    }
+}
+
+.form-group {
+    position: relative;
+    display: flex;
+    width: 100%;
+
+    &>span,
+    .form-field {
+        white-space: nowrap;
+        display: block;
+
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+
+        &:first-child {
+            border-radius: 6px 0 0 6px;
+        }
+
+        &:last-child {
+            border-radius: 0 6px 6px 0;
+        }
+
+        &:not(:first-child) {
+            margin-left: -1px;
+        }
+    }
+
+    .form-field {
+        position: relative;
+        z-index: 1;
+        flex: 1 1 auto;
+        width: 1%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+
+
+    &:focus-within {
+        &>span {
+            color: var(--group-color-focus);
+            background: var(--group-background-focus);
+            border-color: var(--group-border-focus);
+        }
+    }
+}
